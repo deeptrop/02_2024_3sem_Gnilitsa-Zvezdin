@@ -8,14 +8,14 @@
 
 using namespace std;
 
-// Определяем расы
+// расы
 enum Race {
     HUMAN,
     ELF,
     ORC
 };
 
-// Определяем классы
+//  классы
 enum ClassType {
     WARRIOR,
     MAGE,
@@ -87,17 +87,17 @@ public:
         }
     }
 
-    // Получение имени персонажа
+    //  имя персонажа
     string getName() const {
         return name;
     }
 
-    // Проверка, жив ли персонаж
+    // Проверка хп персонажа (жив/мертв)
     bool isAlive() const {
         return health > 0;
     }
 
-    // Метод для получения урона
+    //  получение урона
     void takeDamage(int damage) {
         int effectiveDamage = damage - armor;
         if (effectiveDamage < 0) {
@@ -149,7 +149,6 @@ class Warrior : public Character {
 public:
     Warrior(string n, Race r) : Character(n, r, WARRIOR) {}
 
-    // Реализация способностей
     void ability1(Character* target) override {
         cout << name << " использует Сильный Удар на " << target->getName() << endl;
         target->takeDamage(attackPower + 10);
@@ -177,7 +176,7 @@ class Mage : public Character {
 public:
     Mage(string n, Race r) : Character(n, r, MAGE) {}
 
-    // Реализация способностей
+   
     void ability1(Character* target) override {
         cout << name << " использует Огненный Шар на " << target->getName() << endl;
         target->takeDamage(intelligence + 10);
@@ -206,7 +205,7 @@ class Archer : public Character {
 public:
     Archer(string n, Race r) : Character(n, r, ARCHER) {}
 
-    // Реализация способностей
+
     void ability1(Character* target) override {
         cout << name << " использует Мощный Выстрел на " << target->getName() << endl;
         target->takeDamage(attackPower + 5);
@@ -227,7 +226,7 @@ public:
         cout << name << " использует Отравленную Стрелу на " << target->getName() << endl;
         target->takeDamage(attackPower);
         cout << target->getName() << " отравлен и получит дополнительный урон в следующий ход." << endl;
-        // Реализация отравления может быть расширена
+        
     }
 };
 
@@ -321,7 +320,7 @@ void autoTurn(Character* player, vector<Character*>& enemyTeam) {
     player->randomMove(target);
 }
 
-// Проверка, все ли персонажи команды выбыли из строя
+// все ли персонажи команды выбыли 
 bool isTeamDefeated(const vector<Character*>& team) {
     for (Character* member : team) {
         if (member->isAlive()) {
@@ -340,7 +339,7 @@ void cleanUpTeam(vector<Character*>& team) {
 }
 
 int main() {
-    srand(static_cast<unsigned int>(time(0))); // Инициализируем генератор случайных чисел
+    srand(static_cast<unsigned int>(time(0))); 
 
     vector<Character*> team1;
     vector<Character*> team2;
