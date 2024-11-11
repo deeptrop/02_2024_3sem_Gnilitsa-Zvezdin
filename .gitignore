@@ -1,4 +1,5 @@
 *.docx
 doc.olimp/
 *.py
+.DS_Store
 
