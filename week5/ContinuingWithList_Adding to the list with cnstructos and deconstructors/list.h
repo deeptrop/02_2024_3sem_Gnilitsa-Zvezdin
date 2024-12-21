@@ -4,6 +4,7 @@
 #define LIST_H
 
 #include <iostream>
+#include <stdexcept>
 
 // Структура для хранения одного элемента списка
 struct list_item {
@@ -17,11 +18,14 @@ struct list_item {
 
 // Класс для управления списком в целом
 class list {
+
+private:
     list_item* first; // Указатель на первый элемент списка
     list_item* last; // Указатель на последний элемент списка
     list_item* current; // Указатель на текущий элемент списка
 
 public:
+
     // Конструктор по умолчанию
     list();
 
@@ -39,6 +43,24 @@ public:
 
     // Деструктор
     ~list();
+
+    // Геттер для данных текущего элемента
+    int get_current_data() const;
+
+    // Метод для установки текущего элемента на первый
+    void set_current_to_first();
+
+    // Метод для установки текущего элемента на последний
+    void set_current_to_last();
+
+    // Метод для установки текущего элемента по значению данных
+    bool set_current_by_value(int value);
+
+    // Геттер для данных первого элемента
+    int get_first_data() const;
+
+    // Сеттер для данных первого элемента
+    void set_first_data(int value);
 
     // Проверяет, пуст ли список
     bool is_empty() const;
@@ -89,3 +111,4 @@ public:
 };
 
 #endif // LIST_H
+

@@ -90,7 +90,7 @@ int main()
     
     FuncPtr NUMPY[7] = {min_v, max_v, power, multi, division, substr, sum}; // создание массива из указателей на функции
     
-    vector<pair<int, FuncPtr>> results; // создание вектора 
+    vector < pair < int, FuncPtr > > results; // создание вектора 
     for (int i=0; i<7; i++ )
     {
         results.emplace_back(NUMPY[i](a,b),NUMPY[i]); // заполнение вектора 

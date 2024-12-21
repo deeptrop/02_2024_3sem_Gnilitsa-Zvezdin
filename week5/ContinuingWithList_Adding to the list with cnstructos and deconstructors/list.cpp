@@ -2,6 +2,7 @@
 
 #include "list.h"
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -25,6 +26,54 @@ void list::clear() {
         p = next;
     }
     first = last = current = nullptr;
+}
+
+// Геттер для данных текущего элемента
+int list::get_current_data() const {
+    if (current != nullptr) {
+        return current->data;
+    }
+    throw runtime_error("Текущий элемент не установлен.");
+}
+
+// Метод для установки текущего элемента на первый
+void list::set_current_to_first() {
+    current = first;
+}
+
+// Метод для установки текущего элемента на последний
+void list::set_current_to_last() {
+    current = last;
+}
+
+// Метод для установки текущего элемента по значению данных
+bool list::set_current_by_value(int value) {
+    list_item* temp = first;
+    while (temp != nullptr) {
+        if (temp->data == value) {
+            current = temp;
+            return true;
+        }
+        temp = temp->next;
+    }
+    return false; // Элемент с таким значением не найден
+}
+
+// Геттер для данных первого элемента
+int list::get_first_data() const {
+    if (first != nullptr) {
+        return first->data;
+    }
+    throw runtime_error("Список пуст.");
+}
+
+// Сеттер для данных первого элемента
+void list::set_first_data(int value) {
+    if (first != nullptr) {
+        first->data = value;
+    } else {
+        throw runtime_error("Список пуст. Нельзя установить данные первого элемента.");
+    }
 }
 
 // Конструктор копирования
@@ -295,3 +344,4 @@ list list::operator+(list&& other) {
     }
     return result;
 }
+
